@@ -161,7 +161,7 @@ def plot_attitude_loops(data):
     Plot attitude loops.
     """
     pl.subplot(311)
-    pl.title('attitude control')
+    pl.title('attitude')
     pl.rad2deg(data.ATT_Roll).plot(legend=True)
     pl.rad2deg(data.ATSP_RollSP).plot()
     pl.ylabel('roll, deg')
@@ -211,6 +211,22 @@ def plot_attitude_rate_loops(data):
     pl.grid(True)
     background_flight_modes(data)
 
+
+def plot_attitude_control_loops(data):
+
+    pl.title('attitude control')
+
+    pl.subplot(311)
+    pl.rad2deg(data.ATTC_Roll).plot(legend=True)
+    pl.ylabel('roll, deg/s')
+
+    pl.subplot(312)
+    pl.rad2deg(data.ATTC_Pitch).plot(legend=True)
+    pl.ylabel('pitch, deg/s')
+
+    pl.subplot(313)
+    pl.rad2deg(data.ATTC_Yaw).plot(legend=True)
+    pl.ylabel('yaw, deg/s')
 
 def plot_velocity_loops(data):
     """
@@ -274,6 +290,15 @@ def plot_control_loops(data):
     plot_attitude_loops(data)
     plot_velocity_loops(data)
     plot_position_loops(data)
+
+def plot_skip_count_en(data):
+    """
+    Plot Skip count Enabled.
+    """
+    print('Skip Count: ' + data.SKC)
+    pl.title('Skip Count Enabled')
+    pl.ylabel('enabled')
+    data.SK.plot(legend=True)
 
 
 def statistics(df, keys=None, plot=False):
