@@ -257,6 +257,39 @@ def plot_control_loops(data):
     plot_velocity_loops(data)
     plot_position_loops(data)
 
+def plot_acceleration_raw(data):
+
+    pl.title('Raw Acceleration')
+    pl.ylabel('m/s^2')
+
+    data.IMU_AccX.plot(legend=True)
+    data.IMU_AccY.plot(legend=True)
+    data.IMU_AccZ.plot(legend=True)
+
+def plot_angular_speed_raw(data):
+
+    pl.title('Raw Angular Speed')
+    pl.ylabel('deg/s')
+
+    pl.rad2deg(data.IMU_GyroX).plot(legend=True)
+    pl.rad2deg(data.IMU_GyroY).plot(legend=True)
+    pl.rad2deg(data.IMU_GyroZ).plot(legend=True)
+
+def plot_magnetic_raw(data):
+
+    pl.title('Raw Magnetic Field Strengh')
+
+    data.IMU_MagX.plot(legend=True)
+    data.IMU_MagY.plot(legend=True)
+    data.IMU_MagZ.plot(legend=True)
+
+def plot_gps_stats(data):
+
+    pl.title('GPS Statistics')
+
+    data.GPS_EPH.plot(legend=True)
+    data.GPS_EPV.plot(legend=True)
+    data.GPS_nSat.plot(legend=True)
 
 def statistics(df, keys=None, plot=False):
     data = {}
