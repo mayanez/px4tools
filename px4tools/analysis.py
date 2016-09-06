@@ -300,6 +300,27 @@ def plot_skip_count_en(data):
     pl.ylabel('enabled')
     data.SK.plot(legend=True)
 
+def plot_rc_inputs(data, rc_mapping=None):
+    """
+    Plot RC Inputs. Optional rc_mapping to reflect channel function in legend.
+    """
+
+    pl.title('RC Inputs')
+    pl.ylabel('Normalized Inputs (%)')
+
+    (100 * data.RC_C0).plot(legend=True)
+    (100 * data.RC_C1).plot(legend=True)
+    (100 * data.RC_C2).plot(legend=True)
+    (100 * data.RC_C4).plot(legend=True)
+    (100 * data.RC_C5).plot(legend=True)
+    (100 * data.RC_C6).plot(legend=True)
+    (100 * data.RC_C7).plot(legend=True)
+    (100 * data.RC_C8).plot(legend=True)
+    (100 * data.RC_C9).plot(legend=True)
+    (100 * data.RC_C10).plot(legend=True)
+    (100 * data.RC_C11).plot(legend=True)
+
+    pl.legend(labels=rc_mapping)
 
 def statistics(df, keys=None, plot=False):
     data = {}
