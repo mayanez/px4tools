@@ -291,6 +291,7 @@ def plot_control_loops(data):
     plot_velocity_loops(data)
     plot_position_loops(data)
 
+<<<<<<< HEAD
 def plot_skip_count_en(data):
     """
     Plot Skip count Enabled.
@@ -355,6 +356,28 @@ def plot_gps_stats(data):
     data.GPS_EPH.plot(legend=True)
     data.GPS_EPV.plot(legend=True)
     data.GPS_nSat.plot(legend=True)
+
+def _plot_outputs(data, channel):
+    columns = ['OUT{0}_Out{1}'.format(channel, i) for i in range(0,8)]
+
+    for c in columns:
+        if (data[c].max() > 0):
+            data[c].plot(legend=True)
+
+def plot_px4io_outputs(data):
+    """
+    Plots outputs on PX4IO
+    """
+
+    pl.title('PX4IO Outputs')
+    _plot_outputs(data, 0)
+
+def plot_px4fmu_outputs(data):
+    """
+    Plots outputs on PX4FMU/AUX
+    """
+    pl.title('AUX Outputs')
+    _plot_outputs(data, 1)
 
 def statistics(df, keys=None, plot=False):
     data = {}
