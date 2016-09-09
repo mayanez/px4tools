@@ -112,7 +112,6 @@ def pos_analysis(data):
     pl.grid()
     pl.autoscale(True, 'both', True)
     pl.legend(loc='best')
-    return locals()
 
 def isfloatarray(cell):
     """
@@ -291,7 +290,6 @@ def plot_control_loops(data):
     plot_velocity_loops(data)
     plot_position_loops(data)
 
-<<<<<<< HEAD
 def plot_skip_count_en(data):
     """
     Plot Skip count Enabled.
@@ -300,6 +298,8 @@ def plot_skip_count_en(data):
     pl.title('Skip Count Enabled')
     pl.ylabel('enabled')
     data.SK.plot(legend=True)
+    background_flight_modes(data)
+
 
 def plot_rc_inputs(data, rc_mapping=None):
     """
@@ -322,6 +322,7 @@ def plot_rc_inputs(data, rc_mapping=None):
     (100 * data.RC_C11).plot(legend=True)
 
     pl.legend(labels=rc_mapping)
+    background_flight_modes(data)
 
 def plot_acceleration_raw(data):
 
@@ -331,6 +332,7 @@ def plot_acceleration_raw(data):
     data.IMU_AccX.plot(legend=True)
     data.IMU_AccY.plot(legend=True)
     data.IMU_AccZ.plot(legend=True)
+    background_flight_modes(data)
 
 def plot_angular_speed_raw(data):
 
@@ -340,6 +342,7 @@ def plot_angular_speed_raw(data):
     pl.rad2deg(data.IMU_GyroX).plot(legend=True)
     pl.rad2deg(data.IMU_GyroY).plot(legend=True)
     pl.rad2deg(data.IMU_GyroZ).plot(legend=True)
+    background_flight_modes(data)
 
 def plot_magnetic_raw(data):
 
@@ -348,6 +351,7 @@ def plot_magnetic_raw(data):
     data.IMU_MagX.plot(legend=True)
     data.IMU_MagY.plot(legend=True)
     data.IMU_MagZ.plot(legend=True)
+    background_flight_modes(data)
 
 def plot_gps_stats(data):
 
@@ -356,6 +360,38 @@ def plot_gps_stats(data):
     data.GPS_EPH.plot(legend=True)
     data.GPS_EPV.plot(legend=True)
     data.GPS_nSat.plot(legend=True)
+    background_flight_modes(data)
+
+def plot_distance_sensor(data):
+
+    pl.title('Distance Sensor')
+
+    data.DIST_Distance.plot(legend=True)
+    data.DIST_Covariance.plot(legend=True)
+    background_flight_modes(data)
+
+def plot_sonar_raw(data):
+
+    pl.title('Raw Sonar Distance')
+
+    data.FLOW_DtSonar.plot(legend=True)
+    data.FLOW_DtSonar.plot(legend=True)
+    background_flight_modes(data)
+
+def plot_optical_flow_raw(data):
+
+    pl.title('Raw Optical Flow Position')
+
+    data.FLOW_RawX.plot(legend=True)
+    data.FLOW_RawY.plot(legend=True)
+    background_flight_modes(data)
+
+def plot_optical_flow_quality(data):
+
+    pl.title('Optical Flow Quality')
+
+    data.FLOW_Qlty.plot(legend=True)
+    background_flight_modes(data)
 
 def _plot_outputs(data, channel):
     columns = ['OUT{0}_Out{1}'.format(channel, i) for i in range(0,8)]
@@ -371,6 +407,7 @@ def plot_px4io_outputs(data):
 
     pl.title('PX4IO Outputs')
     _plot_outputs(data, 0)
+    background_flight_modes(data)
 
 def plot_px4fmu_outputs(data):
     """
@@ -378,6 +415,7 @@ def plot_px4fmu_outputs(data):
     """
     pl.title('AUX Outputs')
     _plot_outputs(data, 1)
+    background_flight_modes(data)
 
 def statistics(df, keys=None, plot=False):
     data = {}
